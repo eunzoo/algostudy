@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('error') {
+    stage('Get Issue') {
       steps {
-        jiraSearch '*'
+        jiraGetProject 'EMMA-12'
       }
     }
 
