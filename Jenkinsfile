@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Get Issue') {
+    stage('Send Message') {
       steps {
-        jiraAddComment(idOrKey: 'EMMA-12', comment: 'jenkins pipeline test', input: 'jenkins pipeline test')
+        mattermostSend 'algostudy test'
       }
     }
 
