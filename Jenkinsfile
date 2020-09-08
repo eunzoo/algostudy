@@ -7,9 +7,10 @@ pipeline {
       }
     }
 
-    stage('') {
+    stage('Jira Add Comment') {
       steps {
-        jiraAddComment(idOrKey: 'EMMA-14', comment: 'Send webhook message')
+        jiraAddComment(idOrKey: 'EMMA-14', comment: 'Send webhook message', input: 'Send webhook message')
+        jiraComment(issueKey: 'EMMA-14', body: 'Send webhook message')
       }
     }
 
