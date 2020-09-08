@@ -7,5 +7,11 @@ pipeline {
       }
     }
 
+    stage('') {
+      steps {
+        jiraAddComment(idOrKey: 'EMMA-14', comment: 'Send webhook message')
+      }
+    }
+
   }
 }
