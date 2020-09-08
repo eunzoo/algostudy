@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Send Message') {
       steps {
-        mattermostSend 'comes from a bot named Workflowbot.'
+        mattermostSend(message: 'This is a message.', text: 'Text comes from a bot named Workflowbot.')
       }
     }
 
