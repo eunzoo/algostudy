@@ -9,7 +9,7 @@ pipeline {
 
     stage('Jira Add Comment') {
       steps {
-        jiraComment(issueKey: 'EMMA-14', body: 'Send webhook message')
+        jiraComment(issueKey: 'EMMA-14', body: 'hello eunzoo')
       }
     }
 
