@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Send Message') {
       steps {
-        mattermostSend(message: 'This is the third message.', text: 'Text comes from a bot named Workflowbot.')
+        mattermostSend(message: 'This is the town message.', text: 'text', channel: 'Town-Square')
       }
     }
 
