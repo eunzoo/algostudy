@@ -13,11 +13,5 @@ pipeline {
       }
     }
 
-    stage('test:comment') {
-      steps {
-        jiraAddComment(idOrKey: 'emma-14', comment: 'test', input: 'test')
-      }
-    }
-
   }
 }
