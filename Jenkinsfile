@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Jira Add Comment') {
+    stage('') {
       steps {
-        jiraComment(issueKey: 'EMMA-14', body: '2020.10.14 another comment')
+        mattermostSend(message: '2020.10.14 Message', text: 'This is a test alarm.')
       }
     }
 
