@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    node {
-      label 'jenkins-jenkins-slave'
-    }
-
-  }
+  agent any
   stages {
     stage('error') {
       steps {
@@ -12,8 +7,5 @@ pipeline {
       }
     }
 
-  }
-  environment {
-    EUNZOO_KEY = 'EMMA'
   }
 }
