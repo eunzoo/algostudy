@@ -6,9 +6,9 @@ pipeline {
 
   }
   stages {
-    stage('error') {
+    stage('Send a message') {
       steps {
-        mattermostSend(message: '2020.11.09 Message', text: 'This is a test alarm.')
+        mattermostSend(message: '2020.11.19 Message', text: 'This is a test alarm.')
       }
     }
 
