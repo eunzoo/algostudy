@@ -29,15 +29,21 @@ pipeline {
       }
     }
 
+    stage('git checkout add-test-file') {
+      steps {
+        git(url: 'https://github.com/eunzoo/algostudy', branch: 'add-test-file')
+      }
+    }
+
     stage('Request an approval for Git merge') {
       steps {
-        input(message: 'Request an approval for Git merge', submitter: 'jmungmoong.roh')
+        input 'Request an approval for git merge test'
       }
     }
 
     stage('Git merge') {
       steps {
-        gitAutomerger(logLevel: 'INFO', detailConflictReport: true, checkoutFromRemote: true, remoteName: 'origin', releaseBranchPattern: 'add*')
+        gitAutomerger(checkoutFromRemote: true, detailConflictReport: true, logLevel: 'INFO', remoteName: 'origin')
       }
     }
 
