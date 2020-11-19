@@ -16,13 +16,13 @@ pipeline {
       parallel {
         stage('Send a message') {
           steps {
-            mattermostSend(message: 'Nov. 19, Thursday \'20', text: 'This is a test message')
+            mattermostSend(message: 'Nov. 19, Thursday \'20', text: 'This is a git merge test message')
           }
         }
 
         stage('Comment on an issue') {
           steps {
-            jiraComment(issueKey: 'EMMA-14', body: 'Nov. 19, Thursday : This is a test comment')
+            jiraComment(issueKey: 'EMMA-14', body: 'Nov. 19, Thursday : This is a git merge test comment')
           }
         }
 
@@ -37,7 +37,7 @@ pipeline {
 
     stage('Git merge') {
       steps {
-        gitAutomerger(logLevel: 'INFO', detailConflictReport: true, checkoutFromRemote: true, remoteName: 'origin', releaseBranchPattern: 'add-test-file')
+        gitAutomerger(logLevel: 'INFO', detailConflictReport: true, checkoutFromRemote: true, remoteName: 'origin/add-test-file')
       }
     }
 
