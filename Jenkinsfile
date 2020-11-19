@@ -37,7 +37,7 @@ pipeline {
 
     stage('Git merge') {
       steps {
-        gitAutomerger(logLevel: 'INFO', detailConflictReport: true, checkoutFromRemote: true, remoteName: 'origin/PR-1')
+        gitAutomerger(logLevel: 'INFO', detailConflictReport: true, checkoutFromRemote: true, remoteName: 'origin', releaseBranchPattern: 'add*')
       }
     }
 
