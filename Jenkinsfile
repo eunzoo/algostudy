@@ -6,20 +6,15 @@ pipeline {
 
   }
   stages {
+    stage('Request an approval') {
+      steps {
+        input(message: 'Request an approval for sending a message', submitter: 'jmungmoong.roh')
+      }
+    }
+
     stage('Send a message') {
-      parallel {
-        stage('Send a message') {
-          steps {
-            mattermostSend(message: '2020.11.19 Message', text: 'This is a test alarm.')
-          }
-        }
-
-        stage('Request an approval') {
-          steps {
-            input(message: 'Approval Test', submitter: '58250262+mungmoong3')
-          }
-        }
-
+      steps {
+        mattermostSend(message: 'Nov. 19, Thursday \'20', text: 'This is a test message')
       }
     }
 
