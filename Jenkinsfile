@@ -29,5 +29,17 @@ pipeline {
       }
     }
 
+    stage('Request an approval for Git merge') {
+      steps {
+        input(message: 'Request an approval for Git merge', submitter: 'jmungmoong.roh')
+      }
+    }
+
+    stage('Git merge') {
+      steps {
+        gitAutomerger(logLevel: 'INFO', detailConflictReport: true, checkoutFromRemote: true, remoteName: 'origin', releaseBranchPattern: 'add-test-file')
+      }
+    }
+
   }
 }
