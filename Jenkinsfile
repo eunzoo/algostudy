@@ -13,8 +13,19 @@ pipeline {
     }
 
     stage('Send a message') {
-      steps {
-        mattermostSend(message: 'Nov. 19, Thursday \'20', text: 'This is a test message')
+      parallel {
+        stage('Send a message') {
+          steps {
+            mattermostSend(message: 'Nov. 19, Thursday \'20', text: 'This is a test message')
+          }
+        }
+
+        stage('Comment on an issue') {
+          steps {
+            jiraComment(issueKey: 'EMMA-14', body: 'Nov. 19, Thursday : This is a test comment')
+          }
+        }
+
       }
     }
 
