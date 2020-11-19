@@ -43,7 +43,7 @@ pipeline {
 
     stage('Git merge') {
       steps {
-        gitAutomerger(checkoutFromRemote: true, detailConflictReport: true, logLevel: 'INFO', remoteName: 'origin')
+        gitAutomerger(checkoutFromRemote: true, detailConflictReport: true, logLevel: 'INFO', remoteName: 'origin/add-test-file')
       }
     }
 
