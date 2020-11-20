@@ -41,9 +41,18 @@ pipeline {
       }
     }
 
+    stage('Check Vault Crednetial') {
+      steps {
+        withVault(configuration: [vaultUrl: 'https://dodt-vault.acldevsre.de',  vaultCredentialId: 'approle-for-vault', engineVersion: 2], vaultSecrets: [[path: 'jenkins/eunzoo-public-github', secretValues: [[envVar: 'GITHUB_TOKEN', vaultKey: 'token']]]]) {
+          sh "echo ${env.GITHUB_TOKEN}"
+        }
+
+      }
+    }
+
     stage('Git merge') {
       steps {
-        gitAutomerger(checkoutFromRemote: true, detailConflictReport: true, logLevel: 'INFO', remoteName: 'tree/add-test-file')
+        gitAutomerger(checkoutFromRemote: true, detailConflictReport: true, logLevel: 'INFO', remoteName: 'add-test-file')
       }
     }
 
