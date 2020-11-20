@@ -31,7 +31,7 @@ pipeline {
 
     stage('git checkout add-test-file') {
       steps {
-        git(url: 'https://github.com/eunzoo/algostudy', branch: 'tree/add-test-file')
+        git(url: 'https://github.com/eunzoo/algostudy', branch: 'add-test-file')
       }
     }
 
