@@ -16,7 +16,7 @@ pipeline {
       parallel {
         stage('Send a message') {
           steps {
-            mattermostSend(message: 'Nov. 20, Friday \'20', text: 'This is a git merge test message')
+            mattermostSend(message: 'Nov. 20, Friday \'20', text: 'This is a git merge test message', icon: 'https://www.jenkins.io/images/logos/santa-claus/256.png')
           }
         }
 
@@ -43,7 +43,10 @@ pipeline {
           sh '''git config --global user.email \'eunzoo.me@daum.net\'
 git config --global user.name \'eunzoo\'
 
-git log --oneline'''
+git checkout master
+git merge --no-ff add-test-file
+git push origin master
+'''
         }
 
       }
