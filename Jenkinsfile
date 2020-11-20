@@ -38,14 +38,17 @@ pipeline {
     stage('Check Vault Crednetial & Git Merge') {
       steps {
         git(url: 'https://github.com/eunzoo/algostudy/', branch: 'add-test-file')
-        withVault(configuration: [vaultUrl: 'https://dodt-vault.acldevsre.de',  vaultCredentialId: 'approle-for-vault', engineVersion: 2], vaultSecrets: [[path: 'jenkins/eunzoo-public-github', secretValues: [[envVar: 'GIT_ASKPASS', vaultKey: 'token']]]]) {
-          sh "echo ${env.GIT_ASKPASS}"
-          sh '''git config --global user.email \'eunzoo.me@daum.net\'
-git config --global user.name \'eunzoo\'
+        withVault(configuration: [vaultUrl: 'https://dodt-vault.acldevsre.de',  vaultCredentialId: 'approle-for-vault', engineVersion: 2], vaultSecrets: [[path: 'jenkins/eunzoo-public-github', secretValues: [[envVar: 'GITHUB_TOKEN', vaultKey: 'token']]]]) {
+          sh "echo ${env.GITHUB_TOKEN}"
+          sh '''git clone https://${env.GITHUB_TOKEN}@github.com/eunzoo/algostudy.git
+
+git fetch origin
+git checkout origin/add-test-file
+git merge master
 
 git checkout master
-
-git remote -v'''
+git merge --no-ff add-test-file
+git push origin master'''
         }
 
       }
