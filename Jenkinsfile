@@ -40,9 +40,8 @@ pipeline {
         git(url: 'https://github.com/eunzoo/algostudy/', branch: 'add-test-file')
         withVault(configuration: [vaultUrl: 'https://dodt-vault.acldevsre.de',  vaultCredentialId: 'approle-for-vault', engineVersion: 2], vaultSecrets: [[path: 'jenkins/eunzoo-public-github', secretValues: [[envVar: 'GIT_ASKPASS', vaultKey: 'token']]]]) {
           sh "echo ${env.GIT_ASKPASS}"
-          sh '''git checkout master
-git merge --no-ff add-test-file
-git push origin master'''
+          sh '\'git branch\''
+          sh '\'git log\''
         }
 
       }
