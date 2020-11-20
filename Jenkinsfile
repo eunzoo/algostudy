@@ -44,9 +44,8 @@ pipeline {
 git config --global user.name \'eunzoo\'
 
 git checkout master
-git merge --no-ff add-test-file
-git push origin master
-'''
+
+git remote -v'''
         }
 
       }
