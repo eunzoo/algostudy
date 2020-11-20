@@ -16,13 +16,13 @@ pipeline {
       parallel {
         stage('Send a message') {
           steps {
-            mattermostSend(message: 'Nov. 19, Thursday \'20', text: 'This is a git merge test message')
+            mattermostSend(message: 'Nov. 20, Friday \'20', text: 'This is a git merge test message')
           }
         }
 
         stage('Comment on an issue') {
           steps {
-            jiraComment(issueKey: 'EMMA-14', body: 'Nov. 19, Thursday : This is a git merge test comment')
+            jiraComment(issueKey: 'EMMA-15', body: 'Nov. 20, Friday : This is a git merge test comment')
           }
         }
 
@@ -47,9 +47,9 @@ pipeline {
     stage('git merge') {
       steps {
         git(url: 'https://github.com/eunzoo/algostudy/', branch: 'add-test-file')
-        sh '''git fetch origin
-git checkout -b add-test-file origin/add-test-file
-git merge master'''
+        sh '''git checkout master
+git merge --no-ff add-test-file
+git push origin master'''
       }
     }
 
