@@ -29,12 +29,6 @@ pipeline {
       }
     }
 
-    stage('git checkout add-test-file') {
-      steps {
-        git(url: 'https://github.com/eunzoo/algostudy', branch: 'add-test-file')
-      }
-    }
-
     stage('Request an approval for Git merge') {
       steps {
         input 'Request an approval for git merge test'
@@ -53,7 +47,9 @@ pipeline {
     stage('git merge') {
       steps {
         git(url: 'https://github.com/eunzoo/algostudy/', branch: 'add-test-file')
-        gitAutomerger(checkoutFromRemote: true, detailConflictReport: true, logLevel: 'INFO', remoteName: 'origin/add-test-file')
+        sh '''git fetch origin
+git checkout -b add-test-file origin/add-test-file
+git merge master'''
       }
     }
 
