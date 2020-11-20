@@ -40,8 +40,10 @@ pipeline {
         git(url: 'https://github.com/eunzoo/algostudy/', branch: 'add-test-file')
         withVault(configuration: [vaultUrl: 'https://dodt-vault.acldevsre.de',  vaultCredentialId: 'approle-for-vault', engineVersion: 2], vaultSecrets: [[path: 'jenkins/eunzoo-public-github', secretValues: [[envVar: 'GIT_ASKPASS', vaultKey: 'token']]]]) {
           sh "echo ${env.GIT_ASKPASS}"
-          sh '\'git branch\''
-          sh '\'git log\''
+          sh '''git config --global user.email \'eunzoo.me@daum.net\'
+git config --global user.name \'eunzoo\'
+
+git log --oneline'''
         }
 
       }
