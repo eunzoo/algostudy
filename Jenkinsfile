@@ -30,23 +30,9 @@ pipeline {
     }
 
     stage('Check Vault Crednetial & Git Merge') {
-      parallel {
-        stage('Check Vault Crednetial & Git Merge') {
-          steps {
-            withVault(configuration: [vaultUrl: 'https://dodt-vault.acldevsre.de',  vaultCredentialId: 'approle-for-vault', engineVersion: 2], vaultSecrets: [[path: 'jenkins/eunzoo-public-github', secretValues: [[envVar: 'GITHUB_TOKEN', vaultKey: 'token']]]]) {
-              sh "echo ${env.GITHUB_TOKEN}"
-            }
-
-          }
-        }
-
-        stage('Git test') {
-          steps {
-            git(url: 'https://github.com/eunzoo/algostudy.git', branch: 'origin/add-test-file')
-            sh '''pwd
-ls -al
-'''
-          }
+      steps {
+        withVault(configuration: [vaultUrl: 'https://dodt-vault.acldevsre.de',  vaultCredentialId: 'approle-for-vault', engineVersion: 2], vaultSecrets: [[path: 'jenkins/eunzoo-public-github', secretValues: [[envVar: 'GITHUB_TOKEN', vaultKey: 'token']]]]) {
+          sh "echo ${env.GITHUB_TOKEN}"
         }
 
       }
